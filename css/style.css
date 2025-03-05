@@ -1,0 +1,334 @@
+/* Starburst colors: red, yellow, white */
+/* Idea: "Every starburst is bursting with different flavours!", falling starbursts in the background with 3 main ones that when hovered over, reveal the facts*/
+html{
+    scroll-behavior: smooth;
+    background: linear-gradient(to bottom, red 50%, yellow); /* to give the page a yellow fade halfway down. Looks good in combination with the candy pile idea */
+}
+
+body{
+    color: gold;
+    text-shadow: 2px 2px 3px black; /* Yellow text doesn't stand out by itself, so adding a text shadow fixes that. */
+    font-family: "Roboto", sans-serif; /* Roboto is used for standard text */
+    min-height: 100vh; 
+    min-width: 150vh;
+}
+
+.container { /* flex container for body content, not including footer */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1, h2, h3, h4, h5, h6{
+    font-family: "DynaPuff", Rockwell, serif; /* Dynapuff ties into the lighthearted nature of candy really well and helps give the site a fun look */
+}
+
+h1{
+    font-size: 10em;
+    margin-top: 5vh;
+    text-align: center;
+}
+h1 .zoom{ /*for special animation of "burst" on startup. I could not recreate the starburst logo with css, so adding this effect is a substitute to still represent the larger size of "burst" in the official logo */
+    display: inline-block; /*inline in order for the scale effect to be applied */
+    font-size: 1em;
+    animation: zoom 2s 1 /*runs keyframe animation once on refresh and lasts 2 seconds */
+}
+@keyframes zoom{
+    0%{
+        transform: scale(1);
+    }
+    50%{ /*scales size and increases margin so it does not overlap the rest of the heading */
+        transform: scale(1.5);
+        margin-left: 30vh;
+        text-shadow: 5px 3px 2px black;
+    }
+    100%{ /* original text shadow has to be reapplied so the animation doesn't have an abrupt change when it ends */
+        transform: scale(1);
+        text-shadow: 2px 2px 3px black;
+    }
+}
+
+h2{
+    margin-top: 15vh;
+    font-size: 2.5em;
+    text-align: center;
+    margin-bottom: 15vh;
+}
+
+/* starburst sections */
+h3{
+    font-size: 2.3em;
+    text-shadow: 3px 1px 1px black;
+    margin: 5% 5%;
+    text-align: center;
+}
+
+div section p{
+    line-height: 1.5; 
+    margin: 2% 5%;
+}
+
+/* keyframe animation to indicate to the user that the boxes can be interacted with. */
+@keyframes flash{
+    0%{
+        border-color: black;
+    }
+    50%{
+        border-color: white;
+    }
+    100%{
+        border-color: black;
+    }
+}
+
+/* style applied to all the starburst fact sections */
+#burstOne, #burstTwo, #burstThree, #burstFour{ /* overlap */
+    height: 50vh;
+    width:50vh;
+    border: 1vh solid black;
+    outline: 1vh solid black; /* outline typically acts as a border around the border, but in this case it is used to give a 3d effect */
+    outline-offset: -3vh; /* offset to be inside the border, that way the border flashes while keeping a black outline inside*/
+    border-radius: 3vh;
+    border-spacing: 1.8vh;
+    /*an svg was used since it saves on having to add no background repeat and keeps the quality of the logo when the image is scaled due to screen size*/
+    background-image: url(../imgs/candylogounsmooth.svg); /* originally was going to use an actual starburst candy image for the overlap, but there were no good pictures so took the candy decal instead */
+    background-blend-mode: normal; /*blends the background image with the background color. */
+    z-index: 2; /*#burst are the divs that overlap the section content to give the effect of opening a candy, so they have a greater z index than the sections*/
+    animation: flash 4s infinite; /* give indication to the user that they should hover */
+    transition: opacity 0.5s ease; /* adds a brief timer to opacity so the overlap doesn't disappear instantly */
+}
+
+#redBox, #blueBox, #greenBox, #pinkBox{ /* section */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height:50vh;
+    width:50vh;
+    border-radius: 3vh;
+    border: 1vh solid black;
+    z-index: 1; 
+}
+
+#redBox img, #blueBox img, #greenBox img{ /* sets the height and width of the images so they fit inside the section */
+    width: 30%;
+    height: 30%;
+}
+
+#burstOne:hover, #burstTwo:hover, #burstThree:hover, #burstFour:hover{ /* basic hover effect for overlap (some have more advanced) */
+    opacity: 0;
+}
+
+#burstOne{ /* for overlap of the red (first) section */
+    transform:rotate(-15deg); /* rotated to make it seem like the sections are actually candy falling */
+    background-color: rgb(248, 64, 64);
+    margin-left: -80vh; /* margin is adjusted to overlap the section */
+}
+#redBox{
+    transform:rotate(-15deg);
+    margin-right: 100vh;
+    margin-top: -51vh; /* overlap div appears above the section in html, so margin must be negative to allow it to overlap. */
+    margin-left: 18vh; /* margin is adjusted in a way so that the section sticks out of the overlap a small bit to give a 3d effect */
+    margin-bottom: 2vh;
+    background-color: rgb(248, 64, 64);
+}
+
+#burstTwo{ /* overlap of the blue section */
+    transform:rotate(165deg);
+    background-color: rgb(90, 90, 251);
+    margin-right: -79vh;
+}
+#blueBox{ /* appears to the right of the screen and is rotated upside down */
+    transform:rotate(165deg);
+    margin-right: 10vh;
+    margin-top: -53vh;
+    margin-left: 90vh;
+    margin-bottom: 30vh;
+    background-color: rgb(90, 90, 251);
+    transition: transform 0.4s ease; /* the section appears upside down based on the overlap so that is reflected by rotating the section once the user hovers to show that effect */
+}
+#burstTwo:hover + #blueBox{ /* rotation effect for the section. */
+    transform:rotate(10deg);
+}
+
+#burstThree{
+    transform:rotate(-70deg);
+    background-color: rgb(40, 154, 40);
+    margin-left: -80vh;
+}
+#greenBox{ /*appears to the left side and is rotated mostly to the left */
+    transform:rotate(-70deg);
+    margin-right: 96vh;
+    margin-top: -53vh;
+    margin-left: 20vh;
+    margin-bottom: 30vh;
+    background-color: rgb(40, 154, 40);
+    transition: transform 0.5s ease;
+}
+#burstThree:hover + #greenBox{ /* rotates the section to a readable angle */
+    transform:rotate(-10deg);
+}
+
+#burstFour{
+    background-color: rgb(215, 58, 147);
+}
+#pinkBox{
+    background-color: rgb(215, 58, 147);
+    margin-top: -51vh;
+    margin-bottom: 2vh;
+}
+#pinkBox h3{
+    font-size: 1.9em;
+}
+/* gave more size to the text in this section as there is not image to make room for */
+#pinkBox p{
+    font-size: 1.9em;
+}
+#pinkBox li{
+    margin-right: 10vh;
+    font-size: 1.9em;
+}
+
+/*div seperating the sections from the footer to give a transition in between. */
+#pile{
+    /* no background repeat necessary due to svg scaling */
+    background-image: url(../imgs/candypile.svg); /*originally was using actual starburst candy images for the pile, but I felt making my own looked better */
+    background-size: cover;
+    height: 50vh;
+    width: 100%; /* width should be 100% so it takes up the entire space above the footer */
+}
+
+/* footer */
+footer{
+    display: flex;
+    flex-direction: row; /* makes the footer content go by rows so it takes up the whole footer rather than the center */
+    justify-content: space-between; /*to evenly space the footer out */
+    background-color: red;
+    border-top: 2vh solid black;
+    height:50vh;
+    font-family: "Akaya Kanadaka", 'Courier New', Courier, monospace; /* font for the footer content */
+}
+
+/* Footer form */
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 0.5;
+}
+form h4{
+    margin: 2vh;
+    font-size: 2.2em;
+    text-shadow: 3px 2px 5px black;
+    text-align: center;
+    padding-right: 5vh;
+}
+form label{
+    font-size: 1.7em;
+    text-shadow: 2px 2px 5px black;
+    margin: 1vh;
+}
+form input{
+    padding: 0.5vh;
+    border: 0.6vh solid black;
+    border-radius: 2vh;
+    margin-left: 5vh;
+    transition: all 0.5s ease; /*inputs have a hover effect, this makes it gradually rather than instant */
+}
+form button{
+    margin: 1vh;
+    border: 0.7vh solid black;
+    border-radius: 2vh;
+    padding: 1vh;
+    margin-top: 2vh;
+    transition: all 0.5s ease;
+}
+form input:hover, form button:hover{
+    background-color: yellow;
+    border-color: white;
+}
+
+/* Footer company info */
+.companyinfo{
+    display: block;
+    flex: 1;
+    font-size: 2em;
+    padding-top: 1vh;
+}
+.companyinfo img{
+    padding-top: 5vh;
+}
+
+.companyinfolinks:hover{ /* to give the paragraph tags the appearance of links(since I am not using anchor elements here) */
+    color: black;
+    text-decoration: underline;
+    text-shadow: none;
+}
+.companyinfo small{
+    font-size: small;
+}
+
+#footerSpace{ /*div to divide the space of the content in the footer better. Mainly just to shrink the form's width */
+    width: 15%;
+}
+
+
+/* Media query to make the website responsive to mobile. (I did not realize this wasn't required but might as well keep it) */
+@media screen and (max-width: 768px) { /* Transforms the website to be viewable in a column format on smaller screens. Removes rotation effects to make things easier to organize */
+    h1{ /*adjusts font sizes of titles */
+        font-size: 3rem;
+    }
+    h2{
+        font-size: 2rem;
+        padding-left: 54vh;
+        padding-right: 54vh;
+    }
+    #burstOne, #burstTwo, #burstThree{ /*centers overlaps (4th overlap is already centered) */
+        margin: 0 auto;
+        transform:rotate(0deg);
+    }
+    #redBox, #blueBox, #greenBox{ /*centers sections (pink is already centered) */
+        margin-right: 0;
+        margin-left: 0;
+        margin-bottom: 5vh;
+        font-size: 1rem;
+        transform:rotate(0deg);
+    }
+    #blueBox{
+        margin-left:0.5vh;
+    }
+    #burstTwo:hover + #blueBox, #burstThree:hover + #greenBox{ /*removes rotation effect */
+        transform:none;
+    }
+
+    #pinkBox p{
+        text-shadow: 3px 1px 1px black;
+        font-size: 1.6em;
+    }
+    
+    #pinkBox li{
+        margin-right: 10vh;
+        font-size: 1.6em;
+        text-shadow: 3px 1px 1px black;
+    }
+
+    footer { /*turns footer into a column section and adjusts content appropriately */
+        flex-direction: column;
+        text-align: center;
+        font-size: 0.9rem;
+    }
+    footer h4{
+        font-size: 2rem;
+    }
+    .companyinfo small{
+        font-size: 0.6rem;
+    }
+    footer form{
+        font-size: 1rem;
+        padding-left: 50vh;
+        padding-right: 50vh;
+    }
+    form button{
+        margin-left: 8vh;
+        margin-right: 4vh;
+    }
+}

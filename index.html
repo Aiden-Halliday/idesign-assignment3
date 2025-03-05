@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- metadata -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="the official homepage of the starburst candy">
+        <meta name="robots" content="noindex, nofollow">
+        <title>Starburst Candy | Wrigley Company</title>
+        <!-- fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&family=DynaPuff:wght@400..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <!-- css -->
+        <link rel="stylesheet" href="./css/reset.css">
+        <link rel="stylesheet" href="./css/style.css">
+    </head>
+    <body>
+        <div class="container"> <!-- for flexbox layout -->
+            <h1>Star<span class = "zoom">burst</span></h1> 
+            <h2> Every Starburst is bursting with a different flavour...</h2>
+            <div id= "burstOne"></div> <!-- overlap of the redBox section -->
+            <section id="redBox">
+                <h3>Originated in the U.K.</h3>
+                <p>Starburst was originally known as Opal Fruits and was launched in the UK in 1960. The name was changed to Starburst in 1998!</p>
+                <img src="imgs/opalFruits.png" alt="Opal Fruits packaging">
+            </section>
+            <div id= "burstTwo"></div> <!-- overlap of the blueBox section -->
+            <section id = "blueBox">
+                <h3>Multiple different ways to eat!</h3>
+                <p>Many different varieties of Starburst have been introduced beyond the original fruit chews, including Mini Fruit Chews, Starburst Gummies, and Duo Gummies!</p>
+                <img src="imgs/duogummies.png" alt="Duo Gummies">
+            </section>
+            <div id= "burstThree"></div> <!-- overlap of the greenBox section -->
+            <section id= "greenBox">
+                <h3>Limited time flavours!</h3>
+                <p>The main flavours are strawberry, lemon, cherry, and orange. However there have been seasonal and old flavours returning such as strawberry snow (winter), lime (original flavour), spooky berries (halloween), and more!</p>
+                <img src="imgs/flavours.jpg" alt="A collection of different flavours" >
+            </section>
+            <div id= "burstFour"></div> <!-- overlap of the pinkBox section -->
+            <section id= "pinkBox">
+                <h3>Nutritional Information (Original):</h3>
+                <p>Per 8 pieces (40g)</p>
+                <ul>
+                    <li>Calories: 34g</li>
+                    <li>Carbohydrate: 34g</li>
+                    <li>Sugars: 23g</li>
+                    <li>Protein: 0g</li>
+                    <li>Sodium: 1mg</li>
+                </ul>
+            </section>
+            <div id="pile"></div> <!-- empty div for containing the image of the starburst candy pile (to play into the theme of falling candy) -->
+        </div>
+        <footer>
+            <section class="companyinfo">
+                <h4>Company Information</h4>
+                <p class="companyinfolinks">Socials</p> <!-- wasn't sure if actual links were wanted so I jsut left as paragraph text instead of anchors -->
+                <p class="companyinfolinks">FAQ</p>
+                <p class="companyinfolinks">Privacy Policy</p>
+                <img src="imgs/logo.webp" alt="starburst logo" width="300" height="200">
+                <p><small>© 2025 Wrigley Company, a subsidiary of Mars, Incorporated. All rights reserved.</small></p>
+            </section>
+            <div id="footerSpace"></div> <!-- for condensing the form size in the footer flexbox -->
+            <form>
+                <h4>Recieve News from Us!</h4>
+                <label for="fName">First Name:</label>
+                <input id ="fName" type="text" name="fName" required placeholder="Your first name">
+
+                <label for="lName">Last Name:</label>
+                <input id="lName" type="text" name="lName" required placeholder="Your last name">
+
+                <label for="email">Email:</label>
+                <input id="email" type="email" name="email" required>
+
+                <button type="submit">Submit</button>
+            </form>
+        </footer>
+    </body>
+</html>
